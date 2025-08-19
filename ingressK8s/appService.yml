@@ -1,12 +1,13 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: app-service
+  name: busybox-service
   namespace: ingress
 spec:
   selector:
-    app: portfolio
+    app: busybox
   ports:
   - protocol: TCP
-    port: 3000
-    targetPort: 3000
+    port: 5000
+    targetPort: 5000
+  type: ClusterIP

@@ -1,20 +1,21 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: app-deployment
+  name: busybox-deployment
   namespace: ingress
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: portfolio
+      app: busybox
   template:
     metadata:
       labels:
-        app: portfolio
+        app: busybox
     spec:
       containers:
-      - name: portfolio
-        image: ankitrj3/portfolio
+      - name: busybox
+        image: busybox:latest
+        command: ["sh", "-c", "mkdir -p /www && echo 'Hello from BusyBox!' > /www/index.html && httpd -f -p 5000 -h /www"]
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
